@@ -30,7 +30,7 @@ jobs:
         uses: ./.github/actions/export-dsn
         with:
           pcb_file: output/pcbs/board.kicad_pcb
-          dsn_file: output/pcbs/board.dsn
+          dsn_file: /github/workspace/output/pcbs/board.dsn
       - name: Autoroute main PCB
         uses: ./.github/actions/autoroute
         with:

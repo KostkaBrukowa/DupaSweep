@@ -14,4 +14,5 @@ runs:
   args:
     - '-c'
     - |
+      ls -la /github/workspace/output/pcbs/
       java -jar /opt/freerouting_cli.jar -de ${{ inputs.dsn_file }} -do ${{ inputs.ses_file }}
