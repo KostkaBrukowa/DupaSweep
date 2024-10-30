@@ -11,7 +11,7 @@ module.exports = {
     oled: require('./oled'),
     omron: require('./omron'),
     pad: require('./pad'),
-    promicro: require('./promicro'),
+    promicro: require('./promicro_flippable'),
     rgb: require('./rgb'),
     rotary: require('./rotary'),
     scrollwheel: require('./scrollwheel'),
@@ -19,4 +19,5 @@ module.exports = {
     text: require('./text'),
     trrs: require('./trrs'),
     via: require('./via'),
+    reset_button: require('./reset_button'),
 }
