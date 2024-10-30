@@ -10,7 +10,7 @@ setup:
 	npm install
 
 # outputs from 
-output/pcbs/board.kicad_pcb output/pcbs/top_plate.kicad_pcb output/pcbs/bottom_plate.kicad_pcb &: config.yaml
+output/pcbs/board.kicad_pcb &: config.yaml
 	npm run gen
 
 output/pcbs/%.dsn: output/pcbs/%.kicad_pcb
@@ -50,7 +50,5 @@ clean:
 all: \
 	output/routed_pcbs/board-front.png \
 	output/routed_pcbs/board-back.png \
-	output/gerbers/top_plate/gerbers.zip \
-	output/gerbers/bottom_plate/gerbers.zip \
 	output/gerbers/board/gerbers.zip
 
