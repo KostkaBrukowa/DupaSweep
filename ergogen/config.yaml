@@ -10,7 +10,7 @@ points:
       choc:
         what: chocmini
         nets:
-          from: =column_net
+          from: "{{col_net}}"
           to: GND
         params:
           keycaps: true
@@ -329,29 +329,30 @@ pcbs:
           shift: [22.5, -17.05]
           rotate: 270
       reset:
-        what: button
+        what: reset_button
         adjust:
           ref:
             - matrix_inner_bottom
           shift: [21.2, -5.9]
           rotate: 180
         params:
-          variant: 2_pin_th
-        nets:
           from: GND
           to: RST
+
       broom:
         what: broom
         adjust:
           shift: [23.368, -2.54]
           rotate: 180
+        params:
+          mirror: false
       broom_mirror:
         what: broom
-        params:
-          mirror: true
         adjust:
           shift: [23.368, -2.54]
           rotate: 180
+        params:
+          mirror: true
       info_l:
         what: text
         adjust:

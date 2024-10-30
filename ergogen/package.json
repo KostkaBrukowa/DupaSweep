@@ -3,6 +3,7 @@
     "gen": "ergogen -d ."
   },
   "dependencies": {
-    "ergogen": "github:soundmonster/ergogen#samoklava"
+    "ergogen": "github:ergogen/ergogen#v4.0.4"
   }
 }
+
