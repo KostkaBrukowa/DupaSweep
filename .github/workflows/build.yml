@@ -1,11 +1,4 @@
-on:
-  push:
-    paths:
-      - '.github/workflows/**'
-      - '*.js'
-      - 'package.json'
-      - 'dupa_sweep.yml'
-  workflow_dispatch:
+on: [push, pull_request, workflow_dispatch]
 
 name: Build
 jobs:
@@ -20,9 +13,7 @@ jobs:
         with:
           node-version: 21.x
       - name: Install dependencies
-        run: |
-          cp -r ergogen/* ./
-          npm install
+        run: npm install
       - name: Generate unrouted PCBs
         run: |
           cp ./promicro.js ./node_modules/ergogen/src/footprints
@@ -49,6 +40,16 @@ jobs:
           pcb_input_file: output/pcbs/board.kicad_pcb
           pcb_output_file: output/pcbs/board_routed.kicad_pcb
           ses_file: output/pcbs/board.ses
+      - name: Export Gerbers for top plate
+        uses: ./.github/actions/export-gerbers
+        with:
+          pcb_file: output/pcbs/top_plate.kicad_pcb
+          gerbers_dir: output/gerbers/top_plate
+      - name: Export Gerbers for bottom plate
+        uses: ./.github/actions/export-gerbers
+        with:
+          pcb_file: output/pcbs/bottom_plate.kicad_pcb
+          gerbers_dir: output/gerbers/bottom_plate
       - name: Export Gerbers for main PCB
         uses: ./.github/actions/export-gerbers
         with:
