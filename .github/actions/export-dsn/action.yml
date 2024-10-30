@@ -18,3 +18,4 @@ runs:
       mkdir -p $HOME/.config/kicad ;
       cp /root/.config/kicad/* $HOME/.config/kicad ;
       /usr/lib/python2.7/dist-packages/kicad-automation/pcbnew_automation/export_dsn.py ${{ inputs.pcb_file }} ${{ inputs.dsn_file }}
+      ls -la /github/workspace/output/pcbs/
