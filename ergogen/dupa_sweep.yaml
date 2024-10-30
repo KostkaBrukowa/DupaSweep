@@ -19,61 +19,66 @@ points:
     matrix:
       columns:
         pinky:
-          origin: [ 0, -1cy ]
-          row_overrides:
-            bottom:
-              column_net: P21
-            home:
-              column_net: P20
-            top:
-              column_net: P19
+          key:
+            origin: [ 0, -1cy ]
+            row_overrides:
+              bottom:
+                column_net: P21
+              home:
+                column_net: P20
+              top:
+                column_net: P19
         ring:
-          rotate: 0
-          stagger: 12.23
-          spread: cx
-          row_overrides:
-            bottom:
-              column_net: P18
-            home:
-              column_net: P15
-            top:
-              column_net: P14
+          key:
+            rotate: 0
+            stagger: 12.23
+            spread: cx
+            row_overrides:
+              bottom:
+                column_net: P18
+              home:
+                column_net: P15
+              top:
+                column_net: P14
         middle:
-          origin: [ 0, -1cy ]
-          rotate: 0
-          stagger: 4.46
-          spread: cx
-          row_overrides:
-            bottom:
-              column_net: P16
-            home:
-              column_net: P10
-            top:
-              column_net: P9
+          key:
+            origin: [ 0, -1cy ]
+            rotate: 0
+            stagger: 4.46
+            spread: cx
+            row_overrides:
+              bottom:
+                column_net: P16
+              home:
+                column_net: P10
+              top:
+                column_net: P9
         index:
-          origin: [ 0, -1cy ]
-          rotate: 0
-          stagger: -4.86
-          spread: cx
-          row_overrides:
-            bottom:
-              column_net: P8
-            home:
-              column_net: P7
-            top:
-              column_net: P6
+          key:
+            origin: [ 0, -1cy ]
+            rotate: 0
+            stagger: -4.86
+            spread: cx
+            row_overrides:
+              bottom:
+                column_net: P8
+              home:
+                column_net: P7
+              top:
+                column_net: P6
         inner:
-          origin: [ 0, -1cy ]
-          rotate: 0
-          spread: cx
-          stagger: -1.88
-          row_overrides:
-            bottom:
-              column_net: P5
-            home:
-              column_net: P4
-            top:
-              column_net: P3
+          key:
+            origin: [ 0, -1cy ]
+            rotate: 0
+            spread: cx
+            stagger: -1.88
+            row_overrides:
+              bottom:
+                column_net: P5
+              home:
+                column_net: P4
+              top:
+                column_net: P3
       rows:
         bottom:
           padding: 1ky
@@ -87,27 +92,27 @@ points:
         shift: [ 10.5, -25.06 ]
       columns:
         right:
-          origin: [-cx/2, -cy/2]
-          stagger: 5.64
-          spread: -3.04
-          rotate: -30
           key:
+            origin: [-cx/2, -cy/2]
+            stagger: 5.64
+            spread: -3.04
+            rotate: -30
             column_net: P2
             column_mark: R
         middle:
-          origin: [-cx/2, -cy/2]
-          rotate: 15
-          stagger: -4.72
-          spread: -cx + 0.27
           key:
+            origin: [-cx/2, -cy/2]
+            rotate: 15
+            stagger: -4.72
+            spread: -cx + 0.27
             column_net: P0
             column_mark: M
         left:
-          origin: [-cx/2, -cy/2]
-          stagger: -4.4
-          spread: -cx + 0.6
-          rotate: 14
           key:
+            origin: [-cx/2, -cy/2]
+            stagger: -4.4
+            spread: -cx + 0.6
+            rotate: 14
             column_net: P1
             column_mark: P
       rows:
@@ -115,14 +120,8 @@ points:
           padding: 0
 outlines:
   # board dimensions according to JLCPCB: 122.28 mm x 101.05 mm
-  exports:
-    raw:
-      - type: keys
-        side: left
-        size: [kx, ky]
-        corner: px
     top_arc_left_intersect:
-      - type: polygon
+      - what: polygon
         points:
           - ref: matrix_pinky_top
             shift: [-cx/2, cy/2]
@@ -133,7 +132,7 @@ outlines:
           - ref: matrix_pinky_top
             shift: [-cx/2, 3cy]
     top_arc_right_intersect:
-      - type: polygon
+      - what: polygon
         points:
           - ref: matrix_middle_top
             shift: [cx/2, -cy/2]
@@ -144,7 +143,7 @@ outlines:
           - ref: matrix_inner_top
             shift: [cx/2, cy/2]
     bottom_arc_left_intersect:
-      - type: polygon
+      - what: polygon
         points:
           - ref: matrix_pinky_bottom
             shift: [-cx/2, cy/2]
@@ -155,7 +154,7 @@ outlines:
           - ref: matrix_pinky_bottom
             shift: [-cx/2, -3cy]
     bottom_arc_right_intersect:
-      - type: polygon
+      - what: polygon
         points:
           - ref: matrix_middle_bottom
             shift: [cx/2, -cy/2]
@@ -166,7 +165,7 @@ outlines:
           - ref: thumbfan_right_thumb
             shift: [-2.1cx, -4cy]
     right_cut:
-      - type: polygon
+      - what: polygon
         points:
           - ref: thumbfan_right_thumb
             shift: [cx/2, -cy/2]
@@ -178,50 +177,50 @@ outlines:
             shift: [3cx, -cy/2]
 
     arc_top_left: #todo check with top left corner shift
-      - type: circle
-        anchor:
+      - what: circle
+        where:
           ref: matrix_middle_bottom
           shift: [2.2, -24.22]
         radius: 68.7
-      - type: outline
+      - what: outline
         name: top_arc_left_intersect
         operation: intersect
 
     arc_top_right:
-      - type: circle
-        anchor:
+      - what: circle
+        where:
           ref: matrix_middle_bottom
           shift: [-5.58, -99.1]
         radius: 144.02
-      - type: outline
+      - what: outline
         name: top_arc_right_intersect
         operation: intersect
     arc_bottom_left:
-      - type: circle
-        anchor:
+      - what: circle
+        where:
           ref: matrix_middle_bottom
           shift: [-42.42, -395.95]
         radius: 368.6
-      - type: outline
+      - what: outline
         name: bottom_arc_left_intersect
         operation: intersect
     arc_bottom_right:
-      - type: circle
-        anchor:
+      - what: circle
+        where:
           ref: matrix_middle_bottom
           shift: [-13.3, -175.24]
         radius: 145.98
-      - type: outline
+      - what: outline
         name: bottom_arc_right_intersect
         operation: intersect
     arc_bottom:
-      - type: outline
+      - what: outline
         name: arc_bottom_left
-      - type: outline
+      - what: outline
         name: arc_bottom_right
 
     edge_points:
-      - type: polygon
+      - what: polygon
         points:
           - ref: matrix_pinky_top
             shift: [-cx/2, cy/2]
@@ -247,56 +246,43 @@ outlines:
             shift: [-cx/2, cy/2]
     controller_area:
       main:
-        type: rectangle
-        anchor:
+        what: rectangle
+        where:
           ref:
             - matrix_inner_top
           shift: [0, -60.25]
         size: [32, 62.5]
         corner: px
-    keycaps:
-      main:
-        type: keys
-        side: left
-        size: [kx, ky]
-        bound: false
-        corner: 1
     base_outline:
-      main:
-        type: outline
-        name: raw
       arc_top_left:
-        type: outline
+        what: outline
         name: arc_top_left
       arc_top_right:
-        type: outline
+        what: outline
         name: arc_top_right
       edge:
-        type: outline
+        what: outline
         name: edge_points
       controller:
-        type: outline
+        what: outline
         name: controller_area
       arc_bottom_right:
-        type: outline
+        what: outline
         name: arc_bottom
         operation: subtract
       right_cut:
-        type: outline
+        what: outline
         name: right_cut
         operation: subtract
 
     plate:
       main:
-        type: outline
+        what: outline
         name: base_outline
-      switches:
-        type: outline
-        name: keycaps
-        operation: subtract
+
     pcb:
       main:
-        type: outline
+        what: outline
         name: base_outline
 
 pcbs:
