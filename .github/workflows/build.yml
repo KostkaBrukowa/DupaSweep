@@ -34,7 +34,7 @@ jobs:
       - name: Autoroute main PCB
         uses: ./.github/actions/autoroute
         with:
-          dsn_file: output/pcbs/board.dsn
+          dsn_file: /github/workspace/output/pcbs/board.dsn
           ses_file: output/pcbs/board.ses
       - name: Import SES into main PCB
         uses: ./.github/actions/import-ses
