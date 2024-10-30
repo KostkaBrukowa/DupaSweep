@@ -8,7 +8,7 @@ points:
   key:
     footprints:
       choc:
-        type: chocmini
+        what: chocmini
         nets:
           from: =column_net
           to: GND
@@ -89,20 +89,20 @@ points:
     thumbfan:
       anchor:
         ref: matrix_inner_bottom
-        shift: [ 10.5, -25.06 ]
+        shift: [ 7.5, -25.06 ]
       columns:
         right:
           key:
             origin: [-cx/2, -cy/2]
             stagger: 5.64
             spread: -3.04
-            rotate: -30
+            splay: -30
             column_net: P2
             column_mark: R
         middle:
           key:
             origin: [-cx/2, -cy/2]
-            rotate: 15
+            splay: 15
             stagger: -4.72
             spread: -cx + 0.27
             column_net: P0
@@ -112,7 +112,7 @@ points:
             origin: [-cx/2, -cy/2]
             stagger: -4.4
             spread: -cx + 0.6
-            rotate: 14
+            splay: 14
             column_net: P1
             column_mark: P
       rows:
@@ -120,6 +120,11 @@ points:
           padding: 0
 outlines:
   # board dimensions according to JLCPCB: 122.28 mm x 101.05 mm
+    raw:
+      - what: rectangle
+        size: [kx, ky]
+        corner: px
+        where: true
     top_arc_left_intersect:
       - what: polygon
         points:
@@ -178,7 +183,7 @@ outlines:
 
     arc_top_left: #todo check with top left corner shift
       - what: circle
-        where:
+        adjust:
           ref: matrix_middle_bottom
           shift: [2.2, -24.22]
         radius: 68.7
@@ -188,7 +193,7 @@ outlines:
 
     arc_top_right:
       - what: circle
-        where:
+        adjust:
           ref: matrix_middle_bottom
           shift: [-5.58, -99.1]
         radius: 144.02
@@ -197,7 +202,7 @@ outlines:
         operation: intersect
     arc_bottom_left:
       - what: circle
-        where:
+        adjust:
           ref: matrix_middle_bottom
           shift: [-42.42, -395.95]
         radius: 368.6
@@ -206,7 +211,7 @@ outlines:
         operation: intersect
     arc_bottom_right:
       - what: circle
-        where:
+        adjust:
           ref: matrix_middle_bottom
           shift: [-13.3, -175.24]
         radius: 145.98
@@ -247,13 +252,23 @@ outlines:
     controller_area:
       main:
         what: rectangle
-        where:
+        adjust:
           ref:
             - matrix_inner_top
-          shift: [0, -60.25]
+          shift: [16, -29]
         size: [32, 62.5]
         corner: px
+    keycaps:
+      main:
+        what: rectangle
+        where: true
+        size: [kx, ky]
+        bound: false
+        corner: 1
     base_outline:
+      main:
+        what: outline
+        name: raw
       arc_top_left:
         what: outline
         name: arc_top_left
@@ -279,7 +294,10 @@ outlines:
       main:
         what: outline
         name: base_outline
-
+      switches:
+        what: outline
+        name: keycaps
+        operation: subtract
     pcb:
       main:
         what: outline
@@ -293,26 +311,26 @@ pcbs:
         layer: Edge.Cuts
     footprints:
       mcu_l:
-        type: promicro
+        what: promicro
         params:
           orientation: up
-        anchor:
+        adjust:
           ref:
             - matrix_inner_top
           shift: [20, -15.8]
           rotate: 270
       mcu_r:
-        type: promicro
+        what: promicro
         params:
           orientation: down
-        anchor:
+        adjust:
           ref:
             - matrix_inner_top
           shift: [22.5, -17.05]
           rotate: 270
       reset:
-        type: button
-        anchor:
+        what: button
+        adjust:
           ref:
             - matrix_inner_bottom
           shift: [21.2, -5.9]
@@ -323,28 +341,28 @@ pcbs:
           from: GND
           to: RST
       broom:
-        type: broom
-        anchor:
+        what: broom
+        adjust:
           shift: [23.368, -2.54]
           rotate: 180
       broom_mirror:
-        type: broom
+        what: broom
         params:
           mirror: true
-        anchor:
+        adjust:
           shift: [23.368, -2.54]
           rotate: 180
       info_l:
-        type: text
-        anchor:
+        what: text
+        adjust:
           shift: [87.376, 9.11]
           rotate: -5
         params:
           text: "Dupa Sweep\\nby KostkaBrukowa"
           justify: left
       info_r:
-        type: text
-        anchor:
+        what: text
+        adjust:
           shift: [87.376, 9.11]
           rotate: -5
         params:
