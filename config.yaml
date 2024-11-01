@@ -306,7 +306,7 @@ pcbs:
         params:
           keycaps: true
           reverse: true
-          from: "{{column_net}}"
+          from: "{{col_net}}"
           to: GND
       mcu_l:
         what: promicro
@@ -336,21 +336,6 @@ pcbs:
         params:
           from: GND
           to: RST
-
-      broom:
-        what: broom
-        adjust:
-          shift: [23.368, -2.54]
-          rotate: 180
-        params:
-          mirror: false
-      broom_mirror:
-        what: broom
-        adjust:
-          shift: [23.368, -2.54]
-          rotate: 180
-        params:
-          mirror: true
       info_l:
         what: text
         adjust:
