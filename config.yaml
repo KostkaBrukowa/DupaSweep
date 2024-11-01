@@ -5,23 +5,13 @@ units:
   py: 2
   ring_rotate: -10
 points:
-  key:
-    footprints:
-      choc:
-        what: chocmini
-        nets:
-          from: "{{col_net}}"
-          to: GND
-        params:
-          keycaps: true
-          reverse: true
   zones:
     matrix:
       columns:
         pinky:
           key:
             origin: [ 0, -1cy ]
-            row_overrides:
+            rows:
               bottom:
                 column_net: P21
               home:
@@ -33,52 +23,52 @@ points:
             rotate: 0
             stagger: 12.23
             spread: cx
-            row_overrides:
-              bottom:
-                column_net: P18
-              home:
-                column_net: P15
-              top:
-                column_net: P14
+          rows:
+            bottom:
+              column_net: P18
+            home:
+              column_net: P15
+            top:
+              column_net: P14
         middle:
           key:
             origin: [ 0, -1cy ]
             rotate: 0
             stagger: 4.46
             spread: cx
-            row_overrides:
-              bottom:
-                column_net: P16
-              home:
-                column_net: P10
-              top:
-                column_net: P9
+          rows:
+            bottom:
+              column_net: P16
+            home:
+              column_net: P10
+            top:
+              column_net: P9
         index:
           key:
             origin: [ 0, -1cy ]
             rotate: 0
             stagger: -4.86
             spread: cx
-            row_overrides:
-              bottom:
-                column_net: P8
-              home:
-                column_net: P7
-              top:
-                column_net: P6
+          rows:
+            bottom:
+              column_net: P8
+            home:
+              column_net: P7
+            top:
+              column_net: P6
         inner:
           key:
             origin: [ 0, -1cy ]
             rotate: 0
             spread: cx
             stagger: -1.88
-            row_overrides:
-              bottom:
-                column_net: P5
-              home:
-                column_net: P4
-              top:
-                column_net: P3
+          rows:
+            bottom:
+              column_net: P5
+            home:
+              column_net: P4
+            top:
+              column_net: P3
       rows:
         bottom:
           padding: 1ky
@@ -310,6 +300,14 @@ pcbs:
         outline: pcb
         layer: Edge.Cuts
     footprints:
+      choc:
+        what: chocmini
+        where: true
+        params:
+          keycaps: true
+          reverse: true
+          from: "{{column_net}}"
+          to: GND
       mcu_l:
         what: promicro
         params:

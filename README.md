@@ -23,3 +23,13 @@ Gerber files are available in [this directory](./gerbers). I've successfully man
 
 See the [workflow](.github/workflows/build.yml) or the [Makefile](ergogen/Makefile) for more details.
 
+## Run locally:
+
+`docker images`
+`❯ docker run -v $(pwd)/output:/output c8ab98c1df67 python /usr/lib/python2.7/dist-packages/kicad-automation/pcbnew_automation/export_dsn.py /output/pcbs/board.kicad_pcb /output/pcbs/board.dsn`
+`❯ docker run -v $(pwd)/output:/output f4c89f58fd11 java -jar /opt/freerouting_cli.jar -de /output/pcbs/board.dsn -do /output/pcbs/board.ses`
+`❯ docker run -v $(pwd)/output:/output c8ab98c1df67 /usr/lib/python2.7/dist-packages/kicad-automation/pcbnew_automation/import_ses.py /output/pcbs/board.kicad_pcb /output/pcbs/board.ses`
+`❯ docker run -v $(pwd)/output:/output sha256:8a361e9808f9ae25d86478e5110e61046024c97a23c6e60b45989cfe6ce3e040 kikit fab jlcpcb --no-assembly /output/pcbs/board.kicad_pcb /output/gerbers/board`
+
+case:
+`npx @jscad/cli@1 output/cases/bottom.jscad -of stla -o bottom.stl `
