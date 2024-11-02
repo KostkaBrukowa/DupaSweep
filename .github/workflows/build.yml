@@ -25,6 +25,7 @@ jobs:
           cp ./text.js ./node_modules/ergogen/src/footprints
           cp ./footprints/promicro_flippable.js ./node_modules/ergogen/src/footprints
           cp ./footprints/reset_button.js ./node_modules/ergogen/src/footprints
+          cp ./footprints/mountinghole.js ./node_modules/ergogen/src/footprints
           npm run gen
       - name: Export DSN for main PCB
         uses: ./.github/actions/export-dsn

@@ -4,6 +4,9 @@ units:
   px: 2
   py: 2
   ring_rotate: -10
+    # Defaults to M2 Screws
+  screwSize: 1.5
+  standoffSize: 2.5
 points:
   zones:
     matrix:
@@ -255,6 +258,55 @@ outlines:
         size: [kx, ky]
         bound: false
         corner: 1
+    mounting:
+      - what: circle
+        radius: screwSize
+        where:
+          ref: [matrix_pinky_top]
+          shift: [0.37kx, 0.65ky]
+
+      - what: circle
+        radius: screwSize
+        where:
+          ref: [matrix_inner_top]
+          shift: [0.48kx, -0.5ky]
+
+      - what: circle
+        radius: screwSize
+        where:
+          ref: [matrix_pinky_bottom]
+          shift: [0.7kx, -0.2ky]
+
+      - what: circle
+        radius: screwSize
+        where:
+          ref: [thumbfan_right_thumb]
+          shift: [0, 0.8ky]
+    standoff:
+      - what: circle
+        radius: standoffSize
+        where:
+          ref: [matrix_pinky_top]
+          shift: [0.37kx, 0.65ky]
+
+      - what: circle
+        radius: standoffSize
+        where:
+          ref: [matrix_inner_top]
+          shift: [0.48kx, -0.5ky]
+
+      - what: circle
+        radius: standoffSize
+        where:
+          ref: [matrix_pinky_bottom]
+          shift: [0.7kx, -0.2ky]
+
+      - what: circle
+        radius: standoffSize
+        where:
+          ref: [thumbfan_right_thumb]
+          shift: [0, 0.8ky]
+
     base_outline:
       main:
         what: outline
@@ -292,7 +344,6 @@ outlines:
       main:
         what: outline
         name: base_outline
-
 pcbs:
   board:
     outlines:
@@ -353,3 +404,47 @@ pcbs:
           layer: B.SilkS
           text: "Dupa Sweep\\nby KostkaBrukowa"
           justify: right mirror
+      hole_top_left:
+        what: mountinghole
+        where:
+          ref: [matrix_pinky_top]
+          shift: [0.37kx, 0.65ky]
+
+      hole_top_right:
+        what: mountinghole
+        where:
+          ref: [matrix_inner_top]
+          shift: [0.48kx, -0.5ky]
+
+      hole_bottom_left:
+        what: mountinghole
+        where:
+          ref: [matrix_pinky_bottom]
+          shift: [0.7kx, -0.2ky]
+
+      hole_bottom_right:
+        what: mountinghole
+        where:
+          ref: [thumbfan_right_thumb]
+          shift: [0, 0.8ky]
+
+cases:
+  bottom:
+    - name: base_outline
+      extrude: 1
+  _holes:
+    - name: mounting
+      extrude: 4
+  _standoffs:
+    - name: standoff
+      extrude: 4
+  case:
+    - what: case
+      name: _standoffs
+      operation: add
+    - what: case
+      name: _holes
+      operation: subtract
+    - what: case
+      name: bottom
+      operation: add
