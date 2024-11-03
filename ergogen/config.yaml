@@ -404,29 +404,28 @@ pcbs:
           layer: B.SilkS
           text: "Dupa Sweep\\nby KostkaBrukowa"
           justify: right mirror
-      hole_top_left:
-        what: mountinghole
-        where:
-          ref: [matrix_pinky_top]
-          shift: [0.37kx, 0.65ky]
-
-      hole_top_right:
-        what: mountinghole
-        where:
-          ref: [matrix_inner_top]
-          shift: [0.48kx, -0.5ky]
-
-      hole_bottom_left:
-        what: mountinghole
-        where:
-          ref: [matrix_pinky_bottom]
-          shift: [0.7kx, -0.2ky]
-
-      hole_bottom_right:
-        what: mountinghole
-        where:
-          ref: [thumbfan_right_thumb]
-          shift: [0, 0.8ky]
+      # hole_top_left:
+      #   what: mountinghole
+      #   where:
+      #     ref: [matrix_pinky_top]
+      #     shift: [0.37kx, 0.65ky]
+      # hole_top_right:
+      #   what: mountinghole
+      #   where:
+      #     ref: [matrix_inner_top]
+      #     shift: [0.48kx, -0.5ky]
+      #
+      # hole_bottom_left:
+      #   what: mountinghole
+      #   where:
+      #     ref: [matrix_pinky_bottom]
+      #     shift: [0.7kx, -0.2ky]
+      #
+      # hole_bottom_right:
+      #   what: mountinghole
+      #   where:
+      #     ref: [thumbfan_right_thumb]
+      #     shift: [0, 0.8ky]
 
 cases:
   bottom:
