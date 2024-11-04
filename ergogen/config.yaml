@@ -6,6 +6,7 @@ units:
   ring_rotate: -10
     # Defaults to M2 Screws
   screwSize: 1.5
+  pcbHoleSize: 2
   standoffSize: 2.5
 points:
   zones:
@@ -144,7 +145,7 @@ outlines:
       - what: polygon
         points:
           - ref: matrix_pinky_bottom
-            shift: [-cx/2, cy/2]
+            shift: [-cx/2 - 2, cy/2]
           - ref: matrix_middle_bottom
             shift: [cx/2, cy/2]
           - ref: matrix_middle_bottom
@@ -166,9 +167,9 @@ outlines:
       - what: polygon
         points:
           - ref: thumbfan_right_thumb
-            shift: [cx/2, -cy/2]
+            shift: [cx/2 + 2, -cy/2]
           - ref: thumbfan_right_thumb
-            shift: [cx/2, 5cy]
+            shift: [cx/2 + 2, 5cy]
           - ref: thumbfan_right_thumb
             shift: [3cx, 5cy]
           - ref: thumbfan_right_thumb
@@ -221,7 +222,7 @@ outlines:
       - what: polygon
         points:
           - ref: matrix_pinky_top
-            shift: [-cx/2, cy/2]
+            shift: [-cx/2 - 2, cy/2]
           - ref: matrix_ring_top
             shift: [-cx/2, cy/2]
           - ref: matrix_middle_top
@@ -235,20 +236,31 @@ outlines:
           - ref: matrix_inner_bottom
             shift: [cx/2, -cy/2]
           - ref: thumbfan_right_thumb
-            shift: [cx/2, cy/2]
+            shift: [cx/2 + 2, cy/2]
           - ref: thumbfan_right_thumb
-            shift: [cx/2, -15]
+            shift: [cx/2 + 1.999, -15]
           - ref: matrix_pinky_bottom
-            shift: [-cx/2, -1.5cy]
+            shift: [-cx/2 - 2, -cy/2 - 2]
           - ref: matrix_pinky_top
-            shift: [-cx/2, cy/2]
+            shift: [-cx/2 - 2, cy/2]
+    edge_points_fix:
+      - what: polygon
+        points:
+          - ref: matrix_pinky_bottom
+            shift: [-cx/2 - 2, -cy/2]
+          - ref: matrix_pinky_bottom
+            shift: [-cx/2, -cy/2]
+          - ref: matrix_pinky_bottom
+            shift: [-cx/2, -cy/2 - 2.17]
+          - ref: matrix_pinky_bottom
+            shift: [-cx/2 - 2, -cy/2 - 2.18]
     controller_area:
       main:
         what: rectangle
         adjust:
           ref:
             - matrix_inner_top
-          shift: [16, -29]
+          shift: [18, -29]
         size: [32, 62.5]
         corner: px
     keycaps:
@@ -259,53 +271,50 @@ outlines:
         bound: false
         corner: 1
     mounting:
-      - what: circle
+      top_left:
+        what: circle
         radius: screwSize
         where:
           ref: [matrix_pinky_top]
           shift: [0.37kx, 0.65ky]
-
-      - what: circle
+      top_right:
+        what: circle
         radius: screwSize
         where:
           ref: [matrix_inner_top]
-          shift: [0.48kx, -0.5ky]
-
-      - what: circle
+          shift: [0.48kx + 1, -0.5ky]
+      bottom_left:
+        what: circle
         radius: screwSize
         where:
           ref: [matrix_pinky_bottom]
           shift: [0.7kx, -0.2ky]
-
-      - what: circle
+      bottom_right:
+        what: circle
         radius: screwSize
         where:
           ref: [thumbfan_right_thumb]
           shift: [0, 0.8ky]
     standoff:
-      - what: circle
+      $extends: outlines.mounting
+      top_left:
         radius: standoffSize
-        where:
-          ref: [matrix_pinky_top]
-          shift: [0.37kx, 0.65ky]
-
-      - what: circle
+      top_right:
         radius: standoffSize
-        where:
-          ref: [matrix_inner_top]
-          shift: [0.48kx, -0.5ky]
-
-      - what: circle
+      bottom_left:
         radius: standoffSize
-        where:
-          ref: [matrix_pinky_bottom]
-          shift: [0.7kx, -0.2ky]
-
-      - what: circle
+      bottom_right:
         radius: standoffSize
-        where:
-          ref: [thumbfan_right_thumb]
-          shift: [0, 0.8ky]
+    pcb_holes:
+      $extends: outlines.mounting
+      top_left:
+        radius: pcbHoleSize
+      top_right:
+        radius: pcbHoleSize
+      bottom_left:
+        radius: pcbHoleSize
+      bottom_right:
+        radius: pcbHoleSize
 
     base_outline:
       main:
@@ -320,6 +329,7 @@ outlines:
       edge:
         what: outline
         name: edge_points
+
       controller:
         what: outline
         name: controller_area
@@ -331,6 +341,10 @@ outlines:
         what: outline
         name: right_cut
         operation: subtract
+      edge_fix:
+        what: outline
+        name: edge_points_fix
+        operation: add
 
     plate:
       main:
@@ -344,6 +358,10 @@ outlines:
       main:
         what: outline
         name: base_outline
+      holes:
+        what: outline
+        name: pcb_holes
+        operation: subtract
 pcbs:
   board:
     outlines:
@@ -352,11 +370,12 @@ pcbs:
         layer: Edge.Cuts
     footprints:
       choc:
-        what: chocmini
+        what: choc
         where: true
         params:
           keycaps: true
           reverse: true
+          hotswap: true
           from: "{{column_net}}"
           to: GND
       mcu_l:
@@ -366,7 +385,7 @@ pcbs:
         adjust:
           ref:
             - matrix_inner_top
-          shift: [20, -15.8]
+          shift: [22, -15.8]
           rotate: 270
       mcu_r:
         what: promicro
@@ -375,7 +394,7 @@ pcbs:
         adjust:
           ref:
             - matrix_inner_top
-          shift: [22.5, -17.05]
+          shift: [24.5, -17.05]
           rotate: 270
       reset:
         what: reset_button
@@ -430,13 +449,13 @@ pcbs:
 cases:
   bottom:
     - name: base_outline
-      extrude: 1
+      extrude: 1.5
   _holes:
     - name: mounting
-      extrude: 4
+      extrude: 4.5
   _standoffs:
     - name: standoff
-      extrude: 4
+      extrude: 4.5
   case:
     - what: case
       name: _standoffs
@@ -447,3 +466,4 @@ cases:
     - what: case
       name: bottom
       operation: add
+
