@@ -281,8 +281,8 @@ outlines:
         what: circle
         radius: screwSize
         where:
-          ref: [matrix_inner_top]
-          shift: [0.48kx + 1, -0.5ky]
+          ref: [matrix_index_top]
+          shift: [-0.3kx, 0.65ky]
       bottom_left:
         what: circle
         radius: screwSize

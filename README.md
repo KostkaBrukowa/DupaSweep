@@ -33,3 +33,8 @@ See the [workflow](.github/workflows/build.yml) or the [Makefile](ergogen/Makefi
 
 case:
 `npx @jscad/cli@1 output/cases/bottom.jscad -of stla -o bottom.stl `
+
+To add wall to the case:
+https://www.youtube.com/watch?v=7UXsD7nSfDY
+https://forums.autodesk.com/t5/fusion-design-validate-document/is-there-a-way-to-merge-faces/td-p/6891321
+Then extrude in solid body
