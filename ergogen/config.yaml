@@ -15,13 +15,13 @@ points:
         pinky:
           key:
             origin: [ 0, -1cy ]
-            rows:
-              bottom:
-                column_net: P21
-              home:
-                column_net: P20
-              top:
-                column_net: P19
+          rows:
+            bottom:
+              column_net: P21
+            home:
+              column_net: P20
+            top:
+              column_net: P19
         ring:
           key:
             rotate: 0
