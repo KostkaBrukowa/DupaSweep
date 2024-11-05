@@ -232,9 +232,11 @@ outlines:
           - ref: matrix_index_top
             shift: [cx/2, cy/2]
           - ref: matrix_inner_top
-            shift: [cx/2, cy/2]
+            shift: [-cx/2, cy/2]
+          - ref: matrix_inner_top
+            shift: [cx/2 + 2, cy/2]
           - ref: matrix_inner_bottom
-            shift: [cx/2, -cy/2]
+            shift: [cx/2 + 2, -cy/2]
           - ref: thumbfan_right_thumb
             shift: [cx/2 + 2, cy/2]
           - ref: thumbfan_right_thumb
@@ -385,7 +387,7 @@ pcbs:
         adjust:
           ref:
             - matrix_inner_top
-          shift: [22, -15.8]
+          shift: [21, -15.8]
           rotate: 270
       mcu_r:
         what: promicro
@@ -394,7 +396,7 @@ pcbs:
         adjust:
           ref:
             - matrix_inner_top
-          shift: [24.5, -17.05]
+          shift: [23.5, -17.05]
           rotate: 270
       reset:
         what: reset_button
